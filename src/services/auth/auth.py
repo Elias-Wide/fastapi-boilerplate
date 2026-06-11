@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta, timezone
 
 from config import settings
-from core.exceptions import (
+from core.exceptions.services.users import (
     InvalidCredentialsError,
     RefreshTokenExpiredError,
     RefreshTokenNotFoundError,

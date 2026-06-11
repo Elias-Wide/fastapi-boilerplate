@@ -7,7 +7,6 @@ from pydantic import (
     field_validator,
 )
 
-from core.constants.core import AppLang
 from core.constants.users import (
     PASSWORD_HASH_LENGTH,
     PASSWORD_MAX_LENGTH,
@@ -28,12 +27,6 @@ class SUser(BaseModel):
     id: int
     username: str = Field(
         ..., min_length=USERNAME_MIN_LENGTH, max_length=USERNAME_MAX_LENGTH
-    )
-    tg_id: int | None = Field(
-        default=None, description='Telegram ID of the user'
-    )
-    lang: str = Field(
-        default=AppLang.RU, description='user language for the app'
     )
     model_config = ConfigDict(from_attributes=True)
 

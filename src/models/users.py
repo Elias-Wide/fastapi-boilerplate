@@ -4,11 +4,8 @@ from typing import TYPE_CHECKING, List
 from sqlalchemy import BigInteger, Boolean, DateTime, ForeignKey, String, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from core.constants.core import AppLang
 from db.database import Model
 
-if TYPE_CHECKING:
-    from models.tasks import TasksOrm
 from core.constants.users import TOKEN_HASH_LENGTH
 
 
@@ -26,7 +23,6 @@ class UsersOrm(Model):
 
     username: Mapped[str] = mapped_column(String(), unique=True)
     password_hash: Mapped[str] = mapped_column(String())
-    tg_id: Mapped[int] = mapped_column(BigInteger, index=True, nullable=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now()
     )
@@ -34,11 +30,7 @@ class UsersOrm(Model):
     refresh_tokens: Mapped[list['RefreshTokensOrm']] = relationship(
         back_populates='user', cascade='all, delete-orphan'
     )
-    lang: Mapped[str] = mapped_column(String(), default=AppLang.RU)
-    tasks: Mapped[List['TasksOrm']] = relationship(
-        back_populates='user',
-        cascade='all, delete-orphan',
-    )
+
 
     def __repr__(self) -> str:
         """Technical representation of the user instance."""

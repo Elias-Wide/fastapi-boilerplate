@@ -1,7 +1,9 @@
-from fastapi import HTTPException, status
+from fastapi import status
+
+from src.core.exceptions.api.base import APIException
 
 
-class UserAPIException(HTTPException):
+class UserAPIException(APIException):
     """Base HTTP exception dedicated to the user module."""
 
     def __init__(
