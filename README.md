@@ -1,6 +1,6 @@
-# FastAPI Departments Tree
+# FastAPI Auth & User Management Service
 
-A production-ready FastAPI application for managing department trees, built with SQLAlchemy, Pydantic, Alembic, and Docker.
+A production-ready FastAPI application for user management and authentication, built with SQLAlchemy, Pydantic, Alembic, Poetry, and Docker.
 
 ---
 
@@ -50,20 +50,45 @@ src/
 
 ---
 
-## 🛠️ Getting Started
+## 📐 Architecture & Layer Description
 
-### 1. Clone the Repository
-```bash
-git clone git@github.com:Elias-Wide/fastapi_departments_tree.git
-cd fastapi_departments_tree
-```
+The project strictly follows a layered architectural pattern to ensure clean separation of concerns, high testability, and maintainability.
 
-### 2. Configure Environment Variables
-Create your local environment file by copying the template:
+### 1. API & Routing Layer (`src/api/`)
+* **Purpose:** Handles incoming HTTP requests, defines route paths, and returns HTTP responses.
+* **Logic:** Does not contain business logic. It relies on **Dependency Injection** (`src/dependencies/`) to inject required services, handles validation errors using dedicated API exception mappers (`src/api/exceptions/`), and routes requests to the appropriate Service methods.
+
+### 2. Business Logic Layer (`src/services/`)
+* **Purpose:** The core of the application where business rules, constraints, and operation logic live.
+* **Logic:** Services manipulate domain concepts (e.g., executing user business rules or authentication logic inside `src/services/auth/`). They orchestrate the workflow by communicating with the Data Access Layer (Repositories) and utilizing security utilities (`src/services/security.py`).
+
+### 3. Data Access Layer (`src/repositories/`)
+* **Purpose:** Encapsulates all raw database operations and queries.
+* **Logic:** Implements the Repository Pattern (`src/repositories/base.py`). All SQLAlchemy queries are strictly restricted to this layer. This prevents business services from depending directly on the underlying database client or structure, making it easier to mock or switch databases later.
+
+### 4. Data Validation & Models Layer (`src/schemas/` & `src/models/`)
+* **Schemas (`src/schemas/`):** Built with Pydantic. Used for validating data payloads entering the application (Request) and serialization before returning data to the client (Response). Includes configurations for user inputs and token responses.
+* **Models (`src/models/`):** Built with SQLAlchemy ORM. Represents the actual database tables schema (e.g., `users.py`).
+
+### 5. Dependency Injection (`src/dependencies/`)
+* **Purpose:** Manages the lifecycle of resources needed by the API routers.
+* **Logic:** Provides clean helper utilities like injecting database sessions (`db_manager.py`) or handling specific user-route dependency prerequisites (`users.py`) in a decoupled manner.
+
+### 6. Infrastructure & Core Configuration (`src/database/`, `src/core/`, `src/exceptions/`)
+* **Database Management:** Handles sessions setup (`database.py`) and connection persistence utilities.
+* **Global Exceptions:** A centralized place for internal app exceptions (`base.py`) and FastAPI custom global error handlers (`handlers.py`).
+* **Core:** Stores systemic essentials including centralized configuration management (`config.py`), logging setups (`logging.py`), and localized constants/messages.
+
+---
+
+## 🛠️ Configuration
+
+### Configure Environment Variables
+Create your local environment file by copying the template in the project root directory:
 ```bash
 cp .env.example .env
 ```
-*(Make sure to open `.env` and configure your database credentials and `SECRET_KEY`).*
+*(Make sure to open `.env` and configure your database credentials, environment variables, and `SECRET_KEY`).*
 
 ---
 
