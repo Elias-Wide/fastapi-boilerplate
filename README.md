@@ -118,7 +118,7 @@ docker compose up --build
 ## 💻 Option B: Running Locally (Development Mode)
 
 ### Prerequisites
-* Python 3.10+ installed
+* Python 3.12+ installed
 * [Poetry](https://python-poetry.org) installed
 * A running PostgreSQL database instance
 
