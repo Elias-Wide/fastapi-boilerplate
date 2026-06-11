@@ -5,10 +5,9 @@ from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.core.logging import get_logger
 from src.db.database import Model
 
-logger = get_logger(__name__)
+
 ModelType = TypeVar('ModelType', bound=Model)
 
 
