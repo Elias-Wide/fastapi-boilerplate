@@ -38,7 +38,7 @@ class RefreshTokenExpiredError(ServiceError):
 
 
 class InvalidTokenError(ServiceError):
-    """Raised when a JWT access token is malformed, invalid, or tampered with."""
+    """Raised when a JWT access token is malformed, invalid.."""
 
     message: str = 'Invalid authentication token.'
 

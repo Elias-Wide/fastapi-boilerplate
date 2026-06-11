@@ -1,12 +1,10 @@
 from datetime import datetime
-from typing import TYPE_CHECKING, List
 
-from sqlalchemy import BigInteger, Boolean, DateTime, ForeignKey, String, func
+from sqlalchemy import Boolean, DateTime, ForeignKey, String, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from db.database import Model
-
 from core.constants.users import TOKEN_HASH_LENGTH
+from db.database import Model
 
 
 class UsersOrm(Model):
@@ -30,7 +28,6 @@ class UsersOrm(Model):
     refresh_tokens: Mapped[list['RefreshTokensOrm']] = relationship(
         back_populates='user', cascade='all, delete-orphan'
     )
-
 
     def __repr__(self) -> str:
         """Technical representation of the user instance."""

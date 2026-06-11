@@ -4,7 +4,6 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from db.database import SessionLocal
 from repositories.auth import AuthRepository
-from repositories.tasks import TasksRepository
 from repositories.users import UsersRepository
 
 
@@ -26,7 +25,6 @@ class DBManager:
     async def __aenter__(self) -> 'DBManager':
         self.session = self.session_factory()
         self.users = UsersRepository(self.session)
-        self.tasks = TasksRepository(self.session)
         self.auth = AuthRepository(self.session)
         return self
 
