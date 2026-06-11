@@ -2,7 +2,7 @@ import hashlib
 
 import bcrypt
 
-from services.base import BaseSecurity
+from src.services.base import BaseSecurity
 
 
 class Security(BaseSecurity):

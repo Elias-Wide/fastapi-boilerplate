@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from db.db_manager import DBManager
+from src.db.db_manager import DBManager
 
 
 class BaseService:

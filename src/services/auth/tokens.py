@@ -6,8 +6,8 @@ from datetime import datetime, timedelta, timezone
 import jwt
 from jwt.exceptions import InvalidTokenError
 
-from config import settings
-from schemas.tokens import SJWTPayload
+from src.config import settings
+from src.schemas.tokens import SJWTPayload
 
 
 class TokenHelper:

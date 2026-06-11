@@ -4,11 +4,11 @@ import jwt
 from fastapi import Depends, HTTPException, Request, status
 from jwt import PyJWTError
 
-from config import settings
-from dependencies.db_manager import DBManagerDep
-from models.users import UsersOrm
-from schemas.users import SUser
-from services.users import UsersService
+from src.config import settings
+from src.dependencies.db_manager import DBManagerDep
+from src.models.users import UsersOrm
+from src.schemas.users import SUser
+from src.services.users import UsersService
 
 
 async def get_current_user(

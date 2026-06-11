@@ -1,6 +1,6 @@
 from fastapi import HTTPException, status
 
-from src.core.messages.api.base import ApiErrorMessages
+from src.core.messagesfd.api.base import ApiErrorMessages
 
 
 class APIException(HTTPException):

@@ -8,15 +8,15 @@ from fastapi import (
     status,
 )
 
-from config import settings
-from dependencies.db_manager import DBManagerDep
-from dependencies.users import get_current_user
-from models.users import UsersOrm
-from schemas.tokens import SLoginRequest, SRefreshRequest, STokenPair
-from schemas.users import SUser, SUserRegister
-from services.auth.auth import AuthServiceJWT
-from services.auth.tokens import BaseCookie, get_cookie_config
-from services.users import UsersService
+from src.config import settings
+from src.dependencies.db_manager import DBManagerDep
+from src.dependencies.users import get_current_user
+from src.models.users import UsersOrm
+from src.schemas.tokens import SLoginRequest, SRefreshRequest, STokenPair
+from src.schemas.users import SUser, SUserRegister
+from src.services.auth.auth import AuthServiceJWT
+from src.services.auth.tokens import BaseCookie, get_cookie_config
+from src.services.users import UsersService
 
 router = APIRouter(prefix='/users', tags=['users'])
 
@@ -112,7 +112,7 @@ async def refresh_tokens(
     return pair
 
 
-@router.post('/me')
+@router.get('/me')
 async def get_profile(
     user: Annotated[UsersOrm, Depends(get_current_user)],
     db: DBManagerDep,

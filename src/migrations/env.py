@@ -7,11 +7,11 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from db.database import Model
-from models.users import RefreshTokensOrm, UsersOrm # noqa
-from models.tasks import TasksOrm # noqa
-from models.prompts import PromptsOrm # noqa
-from config import settings
+from src.db.database import Model
+from src.models.users import RefreshTokensOrm, UsersOrm # noqa
+from src.config import settings
+
+
 sys.path.insert(0, dirname(dirname(dirname(abspath(__file__)))))
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

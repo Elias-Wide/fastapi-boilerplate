@@ -4,8 +4,8 @@ from typing import Optional
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from models.users import RefreshTokensOrm
-from repositories.base import SQLAlchemyRepository
+from src.models.users import RefreshTokensOrm
+from src.repositories.base import SQLAlchemyRepository
 
 
 class AuthRepository(SQLAlchemyRepository):

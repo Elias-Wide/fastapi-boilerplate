@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 
-from config import settings
+from src.config import settings
 
 
 class SJWTPayload(BaseModel):

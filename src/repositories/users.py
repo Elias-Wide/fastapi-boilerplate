@@ -1,5 +1,5 @@
-from models.users import UsersOrm
-from repositories.base import SQLAlchemyRepository
+from src.models.users import UsersOrm
+from src.repositories.base import SQLAlchemyRepository
 
 
 class UsersRepository(SQLAlchemyRepository):
@@ -47,6 +47,6 @@ class UsersRepository(SQLAlchemyRepository):
         Returns:
             UsersOrm | None: The user object if found, otherwise None.
         """
-        return  await self.get_one_by_field(
+        return await self.get_one_by_field(
             attr_name='username', attr_value=username
         )

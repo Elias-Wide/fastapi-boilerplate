@@ -4,6 +4,8 @@ from typing import Optional
 from pydantic import Field, SecretStr, ValidationInfo, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+from src.core.constants.core import DEFAULT_JWT_ALGORITHM
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 ENV_PATH = BASE_DIR / '.env'
 
@@ -57,15 +59,73 @@ class DatabaseConfig(ConfigBase):
         return v if v else cls.create_url(info, prefix='test_')
 
 
+class UserAuthConfig(ConfigBase):
+    """
+    User authentication settings, including JWT configuration.
+    """
+
+    jwt_algorithm: str = Field(
+        default=DEFAULT_JWT_ALGORITHM, alias='AUTH_JWT_ALGORITHM'
+    )
+    jwt_secret_key: str = Field(alias='AUTH_JWT_SECRET_KEY')
+    access_token_expires_minutes: int = Field(
+        default=15,
+        alias='AUTH_ACCESS_TOKEN_EXPIRES_MINUTES',
+    )
+    refresh_token_expires_minutes: int = Field(
+        default=60 * 24 * 30,
+        alias='AUTH_REFRESH_TOKEN_EXPIRES_MINUTES',
+    )
+    session_ttl_minutes: int = Field(
+        default=60 * 24,
+        alias='AUTH_SESSION_TTL_MINUTES',
+    )
+    session_extend_minutes: int = Field(
+        default=60 * 24 * 7,
+        alias='AUTH_SESSION_EXTEND_MINUTES',
+    )
+    session_rolling_interval_minutes: int = Field(
+        default=10,
+        alias='AUTH_SESSION_ROLLING_INTERVAL_MINUTES',
+    )
+    session_absolute_timeout_days: int = Field(
+        default=30,
+        alias='AUTH_SESSION_ABSOLUTE_TIMEOUT_DAYS',
+    )
+    session_cookie_name: str = Field(
+        default='session_id',
+        alias='AUTH_SESSION_COOKIE_NAME',
+    )
+    session_cookie_secure: bool = Field(
+        default=False,
+        alias='AUTH_SESSION_COOKIE_SECURE',
+    )
+    session_cookie_domain: str | None = Field(
+        default=None,
+        alias='AUTH_SESSION_COOKIE_DOMAIN',
+    )
+    access_cookie_name: str = Field(
+        default='access_token',
+        alias='AUTH_ACCESS_COOKIE_NAME',
+    )
+    refresh_cookie_name: str = Field(
+        default='refresh_token',
+        alias='AUTH_REFRESH_COOKIE_NAME',
+    )
+
+    model_config = SettingsConfigDict(env_prefix='auth_')
+
+
 class AppConfig(ConfigBase):
     model_config = SettingsConfigDict(env_prefix='app_')
-    name: str
-    mode: str
+    name: str = 'fastapi-app'
+    mode: str = 'dev'
 
 
 class Settings(BaseSettings):
     app: AppConfig = Field(default_factory=AppConfig)
     db: DatabaseConfig = Field(default_factory=DatabaseConfig)
+    auth: UserAuthConfig = Field(default_factory=UserAuthConfig)
 
     @classmethod
     def load(cls) -> 'Settings':
