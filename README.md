@@ -15,8 +15,7 @@ src/
 │       └── users.py        # User endpoints (Example domain)
 ├── core/                   # Global configuration and constants
 │   ├── constants/          # Application constants (core.py, users.py)
-│   ├── logging.py          # Logging setup
-│   └── messages.py         # Application text messages and constants
+│   └── exceptions/         # Custom exceptions
 ├── database/               # Database infrastructure and session setup
 │   ├── db/                 # Connection management (database.py, db_manager.py)
 │   └── services/           # DB-specific helper utilities
@@ -54,19 +53,19 @@ src/
 
 The boilerplate strictly follows a layered architectural pattern to ensure clean separation of concerns, high testability, and fast scaling when adding new features.
 
-### 1. API & Routing Layer (`src/api/`)
+### 1. API & Routing Layer
 * **Purpose:** Handles incoming HTTP requests, defines route paths, and returns HTTP responses.
-* **Logic:** Does not contain business logic. It relies on **Dependency Injection** (`src/dependencies/`) to inject required services, handles validation errors using dedicated API exception mappers (`src/api/exceptions/`), and routes requests to the appropriate Service methods.
+* **Logic:** Does not contain business logic. It relies on **Dependency Injection** (`src/dependencies/`) to inject required services, handles validation errors using dedicated API exception mappers, and routes requests to the appropriate Service methods.
 
-### 2. Business Logic Layer (`src/services/`)
+### 2. Business Logic Layer
 * **Purpose:** The core of the application where business rules, constraints, and operation logic live.
-* **Logic:** Services manipulate domain concepts and orchestrate the workflow by communicating with the Data Access Layer (Repositories) and utilizing security utilities (`src/services/security.py`).
+* **Logic:** Services manipulate domain concepts and orchestrate the workflow by communicating with the Data Access Layer (Repositories).
 
-### 3. Data Access Layer (`src/repositories/`)
+### 3. Data Access Layer
 * **Purpose:** Encapsulates all raw database operations and queries.
 * **Logic:** Implements the Repository Pattern (`src/repositories/base.py`). All SQLAlchemy queries are strictly restricted to this layer. This prevents business services from depending directly on the underlying database client or structure, making it easier to mock or switch databases later.
 
-### 4. Data Validation & Models Layer (`src/schemas/` & `src/models/`)
+### 4. Data Validation & Models Layer
 * **Schemas (`src/schemas/`):** Built with Pydantic. Used for validating data payloads entering the application (Request) and serialization before returning data to the client (Response).
 * **Models (`src/models/`):** Built with SQLAlchemy ORM. Represents the actual database tables schema.
 
@@ -74,10 +73,10 @@ The boilerplate strictly follows a layered architectural pattern to ensure clean
 * **Purpose:** Manages the lifecycle of resources needed by the API routers.
 * **Logic:** Provides clean helper utilities like injecting database sessions (`db_manager.py`) or handling specific route dependency prerequisites in a decoupled manner.
 
-### 6. Infrastructure & Core Configuration (`src/database/`, `src/core/`, `src/exceptions/`)
+### 6. Infrastructure & Core Configuration
 * **Database Management:** Handles sessions setup (`database.py`) and connection persistence utilities.
-* **Global Exceptions:** A centralized place for internal app exceptions (`base.py`) and FastAPI custom global error handlers (`handlers.py`).
-* **Core:** Stores systemic essentials including centralized configuration management (`config.py`), logging setups (`logging.py`), and localized constants/messages.
+* **Global Exceptions:** A centralized place for internal app exceptions and FastAPI custom global error handlers (`core/exceptions/handlers.py`).
+* **Core:** Stores systemic essentials including centralized configuration management (`config.py`), and localized constants/messages.
 
 ---
 
