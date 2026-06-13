@@ -9,40 +9,16 @@ A scalable and production-ready project template for building web APIs with Fast
 ```text
 src/
 ├── api/                    # Endpoints and routing
-│   ├── exceptions/         # API error mappers
-│   └── v1/
-│       ├── routers.py      # Version 1 router registration
-│       └── users.py        # User endpoints (Example domain)
 ├── core/                   # Global configuration and constants
-│   ├── constants/          # Application constants (core.py, users.py)
-│   └── exceptions/         # Custom exceptions
-├── database/               # Database infrastructure and session setup
-│   ├── db/                 # Connection management (database.py, db_manager.py)
-│   └── services/           # DB-specific helper utilities
+├── db/                     # Database infrastructure and session setup
 ├── dependencies/           # FastAPI dependency injection providers
-│   ├── db_manager.py       # DB session dependencies
-│   └── users.py            # Route dependency helpers
 ├── exceptions/             # Global error handling exception classes
-│   ├── base.py             # Base exception classes
-│   └── handlers.py         # FastAPI exception handlers
 ├── migrations/             # Alembic database migrations
-│   ├── versions/           # Migration history scripts
-│   └── env.py              # Alembic environment setup script
-├── models/                 # SQLAlchemy ORM models
-│   └── users.py            # Database models (Example domain)
+├── models/                 # ORM models
 ├── repositories/           # Data access layer (Encapsulated DB queries)
-│   ├── auth.py             # Authentication data logic
-│   ├── base.py             # Base repository functionality
-│   └── users.py            # Data access repository (Example domain)
 ├── schemas/                # Pydantic data validation schemas
-│   ├── tokens.py           # Token request/response structures
-│   └── users.py            # Validation schemas (Example domain)
 ├── services/               # Core business logic layer
-│   ├── auth/               # Security, tokens, and rules (security.py, tokens.py)
-│   ├── base.py             # Base service classes
-│   └── users.py            # Business rules execution (Example domain)
 ├── config.py               # Application settings and environment loading
-├── conftest.py             # Pytest fixtures and test configuration
 ├── Dockerfile              # Docker image build instructions
 └── main.py                 # FastAPI application entry point
 ```
