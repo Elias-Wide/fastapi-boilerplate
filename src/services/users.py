@@ -1,4 +1,4 @@
-from src.core.exceptions.services.users import (
+from src.exceptions.services.users import (
     UserAlreadyExistsError,
     UserNotFoundError,
 )

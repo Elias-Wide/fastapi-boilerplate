@@ -9,8 +9,7 @@ A scalable and production-ready project template for building web APIs with Fast
 ```text
 src/
 ├── api/                    # Endpoints and routing
-├── core/                   # Global configuration and constants
-├── db/                     # Database infrastructure and session setup
+├── core/                   # Global configuration, db infrastructure  and constants
 ├── dependencies/           # FastAPI dependency injection providers
 ├── exceptions/             # Global error handling exception classes
 ├── migrations/             # Alembic database migrations
@@ -18,7 +17,6 @@ src/
 ├── repositories/           # Data access layer (Encapsulated DB queries)
 ├── schemas/                # Pydantic data validation schemas
 ├── services/               # Core business logic layer
-├── config.py               # Application settings and environment loading
 ├── Dockerfile              # Docker image build instructions
 └── main.py                 # FastAPI application entry point
 ```

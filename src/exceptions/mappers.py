@@ -2,15 +2,15 @@ from typing import Dict, Type
 
 from fastapi import status
 
-from src.core.exceptions.api.users import (
+from src.exceptions.api.users import (
     TokenExpiredAPIException,
     UnauthorizedAPIException,
     UserAPIException,
     UserConflictAPIException,
     UserNotFoundAPIException,
 )
-from src.core.exceptions.base import AppError
-from src.core.exceptions.services.users import (
+from src.exceptions.base import AppError
+from src.exceptions.services.users import (
     InvalidCredentialsError,
     InvalidTokenError,
     RefreshTokenExpiredError,

@@ -12,9 +12,9 @@ os.environ['APP_MODE'] = 'TEST'
 from tests.fixtures.tasks import *  # noqa: F403, F401
 
 from core.constants.core import MAIN_API_ROUTE
-from db.database import Model, SessionLocal, engine
-from db.db_manager import DBManager
 from main import app
+from src.core.db.database import Model, SessionLocal, engine
+from src.core.db.db_manager import DBManager
 from tests.fixtures.users import *  # noqa: F403, F401
 
 

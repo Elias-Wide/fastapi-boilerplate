@@ -8,7 +8,7 @@ from fastapi import (
     status,
 )
 
-from src.config import settings
+from src.core.config import settings
 from src.dependencies.db_manager import DBManagerDep
 from src.dependencies.users import get_current_user
 from src.models.users import UsersOrm

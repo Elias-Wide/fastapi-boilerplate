@@ -4,7 +4,7 @@ import jwt
 from fastapi import Depends, HTTPException, Request, status
 from jwt import PyJWTError
 
-from src.config import settings
+from src.core.config import settings
 from src.dependencies.db_manager import DBManagerDep
 from src.models.users import UsersOrm
 from src.schemas.users import SUser

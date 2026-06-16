@@ -1,6 +1,6 @@
 import pytest
+from src.core.db.db_manager import DBManager
 
-from db.db_manager import DBManager
 from schemas.users import SUserRegister
 from services.users import UsersService
 

@@ -1,4 +1,4 @@
-from src.core.exceptions.base import AppError
+from src.exceptions.base import AppError
 
 
 class ServiceError(AppError):

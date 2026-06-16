@@ -7,9 +7,9 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from src.db.database import Model
+from src.core.db.database import Model
 from src.models.users import RefreshTokensOrm, UsersOrm # noqa
-from src.config import settings
+from src.core.config import settings
 
 
 sys.path.insert(0, dirname(dirname(dirname(abspath(__file__)))))

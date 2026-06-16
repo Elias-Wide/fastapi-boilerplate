@@ -5,8 +5,7 @@ from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.db.database import Model
-
+from src.core.db.database import Model
 
 ModelType = TypeVar('ModelType', bound=Model)
 

@@ -1,9 +1,9 @@
 from fastapi import Request
 from fastapi.responses import JSONResponse
 
-from src.core.exceptions.api.base import APIException
-from src.core.exceptions.mappers import BaseExceptionsMapper, get_mapper
-from src.core.exceptions.services.users import ServiceError
+from src.exceptions.api.base import APIException
+from src.exceptions.mappers import BaseExceptionsMapper, get_mapper
+from src.exceptions.services.users import ServiceError
 
 
 async def service_error_handler(request: Request, exc: ServiceError):

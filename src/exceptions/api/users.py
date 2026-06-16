@@ -1,6 +1,6 @@
 from fastapi import status
 
-from src.core.exceptions.api.base import APIException
+from src.exceptions.api.base import APIException
 
 
 class UserAPIException(APIException):

@@ -4,7 +4,7 @@ from sqlalchemy import Boolean, DateTime, ForeignKey, String, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from src.core.constants.users import TOKEN_HASH_LENGTH
-from src.db.database import Model
+from src.core.db.database import Model
 
 
 class UsersOrm(Model):

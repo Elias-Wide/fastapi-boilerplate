@@ -1,7 +1,5 @@
 from fastapi import HTTPException, status
 
-from src.core.messagesfd.api.base import ApiErrorMessages
-
 
 class APIException(HTTPException):
     """
@@ -9,7 +7,7 @@ class APIException(HTTPException):
     """
 
     STATUS_CODE: int = status.HTTP_500_INTERNAL_SERVER_ERROR
-    DETAIL: str = ApiErrorMessages.INTERNAL_SERVER_ERROR
+    DETAIL: str = 'An unexpected error occurred.'
 
     def __init__(self, detail: str = None, status_code: int = None):
         self.status_code = status_code or self.STATUS_CODE

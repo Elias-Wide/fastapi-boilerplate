@@ -6,7 +6,8 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from src.core.constants.core import DEFAULT_JWT_ALGORITHM
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+APP_DIR = BASE_DIR / 'src'
 ENV_PATH = BASE_DIR / '.env'
 
 

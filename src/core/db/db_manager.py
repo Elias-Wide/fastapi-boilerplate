@@ -2,7 +2,7 @@ from typing import Callable
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.db.database import SessionLocal
+from src.core.db.database import SessionLocal
 from src.repositories.auth import AuthRepository
 from src.repositories.users import UsersRepository
 
